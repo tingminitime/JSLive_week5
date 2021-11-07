@@ -78,11 +78,10 @@ img {
           justify-content: center;
   padding: 60px 95px;
   max-width: 920px;
-  margin: 0 auto;
+  margin: 120px auto 100px auto;
   -webkit-box-shadow: 0 3px 6px #00000029;
           box-shadow: 0 3px 6px #00000029;
   border-radius: 12px;
-  margin-bottom: 100px;
 }
 
 @media (max-width: 767px) {
@@ -98,7 +97,7 @@ img {
             box-shadow: none;
     border-radius: 0;
     padding: 60px 20px;
-    margin-bottom: 0;
+    margin: 0 auto 100px auto;
   }
 }
 
