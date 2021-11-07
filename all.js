@@ -82,6 +82,7 @@ search_spotCity(cities)
 
 // 初始化 render
 render(data)
+ticketCountHandler(data)
 
 function render(data) {
   let tickets = ''
@@ -137,6 +138,8 @@ function addTicket(e) {
       checkImgStatus = true
       if (checkInputStatus && checkRateRangeStatus && checkImgStatus) {
         addTicketObj(addObj)
+        search_spotCity(cities)
+        ticketCountHandler(data)
         render(data)
       }
     })
@@ -198,8 +201,18 @@ function checkImgExists(imgUrl) {
 
 function searchCitySelectHandler(e) {
   const filterData = data.filter(item => item['area'] === e.target.value)
-  if (e.target.value === '全部') render(data)
-  else render(filterData)
+  if (e.target.value === '全部') {
+    ticketCountHandler(data)
+    render(data)
+  }
+  else {
+    ticketCountHandler(filterData)
+    render(filterData)
+  }
+}
+
+function ticketCountHandler(data) {
+  ticketCount.textContent = `本次搜尋共 ${data.length} 筆資料`
 }
 
 // ----- 監聽 -----
