@@ -117,7 +117,7 @@ function render(data) {
           </div>
           <div class="ticket__price">
             <span class="ticket__unit">TWD</span>
-            <div class="ticket__amount">$${item['price']}</div>
+            <div class="ticket__amount">$${parseInt(item['price']).toLocaleString()}</div>
           </div>
         </div>
       </div>
