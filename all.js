@@ -41,7 +41,7 @@ const spotList = document.querySelector('.spotList')
 const searchCity = document.querySelector('.citySearch__select')
 const ticketCount = document.querySelector('.citySearch__ticketCount')
 
-// form 景點地區
+// ----- form 景點地區 -----
 function add_spotCity(data) {
   let option = `
   <option
@@ -60,7 +60,7 @@ function add_spotCity(data) {
 }
 add_spotCity(cities)
 
-// search 地區搜尋
+// ----- search 地區搜尋 -----
 function search_spotCity(data) {
   let option = `
   <option
@@ -80,10 +80,11 @@ function search_spotCity(data) {
 }
 search_spotCity(cities)
 
-// 初始化 render
+// ----- 初始化 render -----
 render(data)
 ticketCountHandler(data)
 
+// ----- render 畫面 -----
 function render(data) {
   let tickets = ''
   data.forEach(item => {
@@ -127,6 +128,7 @@ function render(data) {
   spotList.innerHTML = tickets
 }
 
+// ----- 新增套票 -----
 function addTicket(e) {
   const imgUrl = document.querySelector('.form__input--img')
   let addObj = {}
@@ -153,6 +155,17 @@ function addTicket(e) {
     })
 }
 
+// ----- 套票物件新增到 data -----
+function addTicketObj(addObj) {
+  const userInputs = document.querySelectorAll('[data-prop]')
+  userInputs.forEach(input => {
+    addObj[input.dataset.prop] = input.value
+  })
+  console.log(addObj)
+  data.push(addObj)
+}
+
+// ----- 檢查 套票星級 是否在 1~10 分 -----
 function checkRateRange() {
   const ticketRate = document.querySelector('.form__input--rate')
   if (ticketRate.value > 10 || ticketRate.value < 1) {
@@ -164,15 +177,7 @@ function checkRateRange() {
   }
 }
 
-function addTicketObj(addObj) {
-  const userInputs = document.querySelectorAll('[data-prop]')
-  userInputs.forEach(input => {
-    addObj[input.dataset.prop] = input.value
-  })
-  console.log(addObj)
-  data.push(addObj)
-}
-
+// ----- 檢查 input 是否有空值 -----
 function checkInput() {
   const userInputs = document.querySelectorAll('[data-prop]')
   let emptyInput = [...userInputs].find(item => item.value === '')
@@ -185,6 +190,7 @@ function checkInput() {
   }
 }
 
+// ----- 檢查 圖片連結 是否正常 -----
 function checkImgExists(imgUrl) {
   return new Promise((resolve, reject) => {
     let ImgObj = new Image()
@@ -198,7 +204,7 @@ function checkImgExists(imgUrl) {
   })
 }
 
-
+// ----- 地區搜尋 -----
 function searchCitySelectHandler(e) {
   const filterData = data.filter(item => item['area'] === e.target.value)
   if (e.target.value === '全部') {
@@ -211,6 +217,7 @@ function searchCitySelectHandler(e) {
   }
 }
 
+// ----- 顯示幾筆資料 -----
 function ticketCountHandler(data) {
   ticketCount.textContent = `本次搜尋共 ${data.length} 筆資料`
 }
