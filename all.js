@@ -159,6 +159,7 @@ function addTicket(e) {
 function addTicketObj(addObj) {
   const userInputs = document.querySelectorAll('[data-prop]')
   userInputs.forEach(input => {
+    addObj['id'] = data.length
     addObj[input.dataset.prop] = input.value
   })
   console.log(addObj)
